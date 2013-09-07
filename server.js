@@ -1,9 +1,10 @@
 var express = require('express'),
-  url = require('url'),
-  crypto = require('crypto'),
-  app = express(),
-  graph = require('fbgraph'),
-  config = require('./config');
+    io = require('socket.io'),
+    url = require('url'),
+    crypto = require('crypto'),
+    graph = require('fbgraph'),
+    app = express(),
+    config = require('./config');
 
 var Twitter = require('./modules/twitter').Twitter;
 var newTw = new Twitter();
@@ -12,7 +13,7 @@ console.log(newTw.getInfo());
  
 app.use(express.logger('dev'));
 app.use(express.compress());
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/frontend'));
 
 app.get('/callbacks/instagram/:tagName', function(request, response) {
   // The GET callback for each subscription verification.
@@ -70,5 +71,19 @@ app.post('/callbacks/instagram/:tagName', function(request, response) {
   // response.end('OK');
 });
 
-app.listen(config.port);
-console.log('Running at', config.port);
+var server = app.listen(config.port);
+console.log('Running server at', config.port);
+
+var ioserver = io.listen(server);
+
+ioserver.sockets.on('connection', function(socket) {
+  socket.on('subscribe', function(data) {
+    console.log('client subscribed with query #' + data.query);
+    setInterval(function() {
+      socket.emit('feeds', {
+        foo: 'bar',
+        one: 'two'
+      });
+    }, 5000);
+  });
+});

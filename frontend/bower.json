@@ -1,0 +1,19 @@
+{
+  "name": "tags-flow-frontend",
+  "version": "0.0.1",
+  "homepage": "https://github.com/noelroxx/tags-flow",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.8",
+    "socket.io-client": "~0.9.16",
+    "jquery": "~2.0.3"
+  }
+}
