@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "dependencies": {
     "gzippo": "~0.2.0",
-    "express": "~3.3.8"
+    "express": "~3.3.8",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
