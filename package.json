@@ -6,7 +6,7 @@
     "supervisor": ">=0.5.5",
     "fbgraph": "~0.2.7",
     "crypto": "0.0.3",
-    "supervisor": ">=0.5.5"
+    "socket.io": "~0.9.16"
   },
   "engines": {
     "node": ">=0.8.0"
