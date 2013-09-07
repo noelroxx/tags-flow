@@ -4,11 +4,6 @@ var express = require('express'),
   app = express(),
   graph = require('fbgraph'),
   config = require('./config');
-
-var Twitter = require('./modules/twitter').Twitter;
-var newTw = new Twitter();
-
-console.log(newTw.getInfo());
  
 app.use(express.logger('dev'));
 app.use(express.compress());
