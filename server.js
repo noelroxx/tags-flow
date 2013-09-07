@@ -3,10 +3,29 @@ var express = require('express'),
   crypto = require('crypto'),
   app = express(),
   graph = require('fbgraph'),
-  config = require('./config');
+  config = require('./config'),
+  https = require("https");
+
+var options = {
+  host: 'api.vk.com',
+  path: '/method/newsfeed.search?q=Дуров'
+};
+
+https.get(options, function(res) {
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+            // console.log(chunk);
+        });
+  // console.log(res);
+  // console.log('STATUS: ' + res.statusCode);
+  // console.log('HEADERS: ' + JSON.stringify(res.headers));
+  // console.log('CONTENT:' + JSON.stringify(res.headers));
+}).on('error', function(e) {
+  console.log('ERROR: ' + e.message);
+});
 
 // https://github.com/ttezel/twit
-var Twit = require('twit')
+var Twit = require('twit');
 
 var T = new Twit({
   consumer_key:         config.twitter.consumerKey,
