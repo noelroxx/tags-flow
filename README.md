@@ -17,6 +17,10 @@ Show all subscriptions
 
 https://api.instagram.com/v1/subscriptions?client_secret=ff28e6b0f3a0407e86bd6e82d5db4645&client_id=cd5e7bd912c940b8abbbf5389b261dd9
 
+To delete
+
+curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=ff28e6b0f3a0407e86bd6e82d5db4645&object=all&client_id=cd5e7bd912c940b8abbbf5389b261dd9
+
 Configuration
 
 First register a new API client at http://instagram.com/developer/manage/ to get a client id and secret. For this app, the values for website and callback URL are not important. I just used http://localhost:3000.

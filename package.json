@@ -5,12 +5,15 @@
     "express": ">=3.3.8",
     "supervisor": ">=0.5.5",
     "passport": "~0.1.17",
-    "passport-facebook": "~1.0.0"
+    "passport-facebook": "~1.0.0",
+    "crypto": "0.0.3",
+    "node-inspector": "~0.4.0"
   },
   "engines": {
     "node": ">=0.8.0"
   },
   "scripts": {
-    "start": "PORT=5000 supervisor server.js"
+    "start": "PORT=5000 supervisor server.js",
+    "debug": "PORT=5000 node-inspector server.js"
   }
 }
