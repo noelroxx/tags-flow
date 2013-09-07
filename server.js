@@ -1,7 +1,13 @@
 var express = require('express'),
     url = require('url'),
     app = express(),
+    graph = require('fbgraph'),
     port = 5000;
+
+var Twitter = require('./modules/twitter').Twitter;
+var newTw = new Twitter();
+
+console.log(newTw.getInfo());
  
 app.use(express.logger('dev'));
 app.use(express.compress());
