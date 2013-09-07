@@ -1,5 +1,4 @@
-var gzippo = require('gzippo'),
-    express = require('express');
+var express = require('express');
     app = express(),
     port = 5000;
  
