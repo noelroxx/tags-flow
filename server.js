@@ -1,15 +1,44 @@
 var express = require('express'),
-    io = require('socket.io'),
-    url = require('url'),
-    crypto = require('crypto'),
-    graph = require('fbgraph'),
-    app = express(),
-    config = require('./config');
+  io = require('socket.io'),
+  url = require('url'),
+  crypto = require('crypto'),
+  app = express(),
+  graph = require('fbgraph'),
+  config = require('./config'),
+  https = require("https");
 
-var Twitter = require('./modules/twitter').Twitter;
-var newTw = new Twitter();
+var options = {
+  host: 'api.vk.com',
+  path: '/method/newsfeed.search?q=Дуров'
+};
 
-console.log(newTw.getInfo());
+https.get(options, function(res) {
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+            // console.log(chunk);
+        });
+  // console.log(res);
+  // console.log('STATUS: ' + res.statusCode);
+  // console.log('HEADERS: ' + JSON.stringify(res.headers));
+  // console.log('CONTENT:' + JSON.stringify(res.headers));
+}).on('error', function(e) {
+  console.log('ERROR: ' + e.message);
+});
+
+// https://github.com/ttezel/twit
+var Twit = require('twit');
+
+var T = new Twit({
+  consumer_key:         config.twitter.consumerKey,
+  consumer_secret:      config.twitter.consumerSecret,
+  access_token:         config.twitter.accessToken,
+  access_token_secret:  config.twitter.accessTokenSecret
+});
+
+// T.get('search/tweets', { q: '#sxsw', count: 3 }, function(err, reply) {
+//   console.log(reply);
+// })
+
  
 app.use(express.logger('dev'));
 app.use(express.compress());
