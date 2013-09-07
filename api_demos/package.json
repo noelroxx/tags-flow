@@ -1,0 +1,11 @@
+{
+	"name" : "api_demos",
+	"version" : "0.0.1",
+	"private": true,
+	"dependencies" : {
+		"express" : "3.x"
+	},
+	"scripts": {
+		"start": "PORT=1337 node server.js"
+	}
+}
