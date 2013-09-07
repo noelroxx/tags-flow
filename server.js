@@ -4,6 +4,21 @@ var express = require('express'),
   app = express(),
   graph = require('fbgraph'),
   config = require('./config');
+
+// https://github.com/ttezel/twit
+var Twit = require('twit')
+
+var T = new Twit({
+  consumer_key:         config.twitter.consumerKey,
+  consumer_secret:      config.twitter.consumerSecret,
+  access_token:         config.twitter.accessToken,
+  access_token_secret:  config.twitter.accessTokenSecret
+});
+
+// T.get('search/tweets', { q: '#sxsw', count: 3 }, function(err, reply) {
+//   console.log(reply);
+// })
+
  
 app.use(express.logger('dev'));
 app.use(express.compress());
