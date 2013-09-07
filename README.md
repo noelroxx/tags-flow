@@ -11,7 +11,7 @@ https://api.vk.com/method/newsfeed.search?q=QUERY
 #Instagram
 Add subscribe for hashtag notifier
 
-curl -F 'client_id=cd5e7bd912c940b8abbbf5389b261dd9' -F 'client_secret=ff28e6b0f3a0407e86bd6e82d5db4645' -F 'object=tag' -F 'aspect=media' -F 'object_id=nofilter' -F 'callback_url=http://YOUR-CALLBACK/URL' https://api.instagram.com/v1/subscriptions/
+curl -F 'client_id=cd5e7bd912c940b8abbbf5389b261dd9' -F 'client_secret=ff28e6b0f3a0407e86bd6e82d5db4645' -F 'object=tag' -F 'aspect=media' -F 'object_id=testTagsFlow' -F 'callback_url=http://5a6i.localtunnel.com/callbacks/instagram/testTagsFlow' https://api.instagram.com/v1/subscriptions/
 
 Show all subscriptions
 
@@ -19,7 +19,9 @@ https://api.instagram.com/v1/subscriptions?client_secret=ff28e6b0f3a0407e86bd6e8
 
 To delete
 
-curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=ff28e6b0f3a0407e86bd6e82d5db4645&object=all&client_id=cd5e7bd912c940b8abbbf5389b261dd9
+curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=ff28e6b0f3a0407e86bd6e82d5db4645&object=tag&client_id=cd5e7bd912c940b8abbbf5389b261dd9
+
+curl -X DELETE https://api.instagram.com/v1/subscriptions?client_secret=ff28e6b0f3a0407e86bd6e82d5db4645&object=tag&client_id=cd5e7bd912c940b8abbbf5389b261dd9
 
 Configuration
 
