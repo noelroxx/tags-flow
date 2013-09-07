@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('tagsFlowApp', [])
+angular.module('tagsFlowApp', ['ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
