@@ -15,5 +15,9 @@ var twitter = exports = module.exports = function(){
     });
   }
 
+  this.getInfo = function(){
+    return "Hello, World!";
+  }
+
   return this;
 }
