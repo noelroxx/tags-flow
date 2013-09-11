@@ -1,5 +1,6 @@
 var Twit = require('twit');
 var config = require('../config');
+var demo = require('../modules/api-twitter-demo.json');
 
 var twitter = exports = module.exports = function(){
   var T = new Twit({
@@ -10,14 +11,23 @@ var twitter = exports = module.exports = function(){
   });
 
   this.get = function(callback){
-    T.get('search/tweets', { q: '#sxsw', count: 3 }, function(err, reply) {
-      return callback(reply);
-    });
-  }
-
-  this.getInfo = function(){
-    return "Hello, World!";
-  }
+//    T.get('search/tweets', { q: '#syria', count: 3 }, function(err, reply) {
+//      return callback(reply);
+//    });
+    setTimeout(function(){return callback(demo);},1000)
+  };
 
   return this;
-}
+};
+
+var tw = new twitter();
+
+tw.get (function(result){
+  var feeds = [];
+  for (var i in result.statuses){
+    feeds[i] = {
+      author : result.statuses[0].user.name
+    }
+  }
+  console.log(feeds);
+});
