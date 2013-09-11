@@ -20,13 +20,19 @@ var facebook = exports = module.exports = function(){
     });
   };
 
-  this.getFeeds = function(){
-    setTimeout(function(){return callback(demo);},1000);
+  this.get = function(callback){
+    setTimeout(function(){return callback(exportFeeds(demo.data));},1000);
+  };
+
+  function exportFeeds(data){
+    var feeds = [];
+    for (var i in data){
+      feeds[i] = {
+        author : data[i].from['name'],
+        content: data[i].message,
+        date: data[i].created_time
+      }
+    }
+    return feeds;
   }
 };
-
-var fb = new facebook();
-
-fb.getToken(function(result){
-
-});
