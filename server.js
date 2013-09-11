@@ -5,24 +5,6 @@ var express = require('express'),
   app = express(),
   config = require('./config'),
   https = require("https");
-
-var options = {
-  host: 'api.vk.com',
-  path: '/method/newsfeed.search?q=Дуров'
-};
-
-https.get(options, function(res) {
-  res.setEncoding('utf8');
-  res.on('data', function (chunk) {
-            // console.log(chunk);
-        });
-  // console.log(res);
-  // console.log('STATUS: ' + res.statusCode);
-  // console.log('HEADERS: ' + JSON.stringify(res.headers));
-  // console.log('CONTENT:' + JSON.stringify(res.headers));
-}).on('error', function(e) {
-  console.log('ERROR: ' + e.message);
-});
  
 app.use(express.logger('dev'));
 app.use(express.compress());
