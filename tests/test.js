@@ -8,16 +8,18 @@ var expect = chai.expect;
 var twitter = require('../modules/api-twitter');
 
 // var assert = require("assert");
-describe('Twitter', function(){
-  describe('getFeeds', function(){
-    it('should return some feeds ready to export', function(done){
+describe('API', function(){
+  describe('Twitter', function(){
+    it('should return feeds ready to export', function(done){
       var newTw = new twitter();
       newTw.get(function(result){
-        expect(result).to.be.a('object');
-        expect(result[0]).to.have.property('author');
-        expect(result[0]).to.have.property('content');
-        expect(result[0]).to.have.property('source');
-        expect(result[0]).to.have.property('date');
+        console.log(result[0]);
+        expect(result).to.be.a('array');
+        expect(result).to.have.length.below(10);
+        expect(result[0]).to.have.property('author').that.is.a('string');
+        expect(result[0]).to.have.property('content').that.is.a('string');
+        expect(result[0]).to.have.property('source').that.is.a('string');
+        expect(result[0]).to.have.property('date').that.is.a('string');
         done()
       });
     })
