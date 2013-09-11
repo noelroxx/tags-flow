@@ -3,21 +3,13 @@ var express = require('express'),
   url = require('url'),
   crypto = require('crypto'),
   app = express(),
-  graph = require('fbgraph'),
   config = require('./config'),
-  twitter = require('./modules/api-twitter'),
   https = require("https");
 
 var options = {
   host: 'api.vk.com',
   path: '/method/newsfeed.search?q=Дуров'
 };
-
-var newTw = new twitter();
-// console.log(newTw.get());
-newTw.get(function(data){
-  console.log(data);
-});
 
 https.get(options, function(res) {
   res.setEncoding('utf8');
@@ -31,21 +23,6 @@ https.get(options, function(res) {
 }).on('error', function(e) {
   console.log('ERROR: ' + e.message);
 });
-
-// https://github.com/ttezel/twit
-// var Twit = require('twit');
-
-// var T = new Twit({
-//   consumer_key:         config.twitter.consumerKey,
-//   consumer_secret:      config.twitter.consumerSecret,
-//   access_token:         config.twitter.accessToken,
-//   access_token_secret:  config.twitter.accessTokenSecret
-// });
-
-// // T.get('search/tweets', { q: '#sxsw', count: 3 }, function(err, reply) {
-// //   console.log(reply);
-// // })
-
  
 app.use(express.logger('dev'));
 app.use(express.compress());
