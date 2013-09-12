@@ -7,6 +7,7 @@ var expect = chai.expect;
 
 var twitter = require('../modules/api-twitter');
 var facebook = require('../modules/api-facebook');
+var vkontakte = require('../modules/api-vkontakte');
 
 // var assert = require("assert");
 describe('API', function(){
@@ -33,6 +34,18 @@ describe('API', function(){
         expect(result[0]).to.have.property('author').that.is.a('string');
         expect(result[0]).to.have.property('content').that.is.a('string');
         expect(result[0]).to.have.property('date').that.is.a('string');
+        done()
+      });
+    })
+  })
+  describe('Vkontakte', function(){
+    it('should return feeds ready to export', function(done){
+      var newVk = new vkontakte();
+      newVk.get(function(result){
+        expect(result).to.be.a('array');
+        expect(result).to.have.length.below(11);
+        expect(result[1]).to.have.property('content').that.is.a('string');
+        expect(result[1]).to.have.property('date').that.is.a('number');
         done()
       });
     })
