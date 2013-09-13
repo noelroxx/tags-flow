@@ -18,8 +18,9 @@ require(['socket.io', 'jquery'], function(io, $){
 
   socket.on('feeds', function(data) {
     var feeds = $('#feeds');
+    console.log(data);
     for(var key in data) {
-      feeds.append('<p>' + key + ' - ' + data[key] + '</p>');
+      feeds.append('<p>' + data[key].author + '<br/>' + data[key].content + '</p>');
     }
   });
 

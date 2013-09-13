@@ -5,6 +5,10 @@ var express = require('express'),
   app = express(),
   config = require('./config'),
   https = require("https");
+
+var twitter = require('./modules/api-twitter');
+var facebook = require('./modules/api-facebook');
+var vkontakte = require('./modules/api-vkontakte');
  
 app.use(express.logger('dev'));
 app.use(express.compress());
@@ -74,11 +78,23 @@ var ioserver = io.listen(server);
 ioserver.sockets.on('connection', function(socket) {
   socket.on('subscribe', function(data) {
     console.log('client subscribed with query #' + data.query);
-    setInterval(function() {
-      socket.emit('feeds', {
-        foo: 'bar',
-        one: 'two'
-      });
-    }, 5000);
+//    setInterval(function() {
+//      socket.emit('feeds', {
+//        foo: 'bar',
+//        one: 'two'
+//      });
+//    }, 5000);
+    var newTw = new twitter();
+    newTw.get(function(result){
+      socket.emit('feeds', result);
+    });
+    var newFb = new facebook();
+    newFb.get(function(result){
+      socket.emit('feeds', result);
+    });
+    var newVk = new vkontakte();
+    newVk.get(function(result){
+      socket.emit('feeds', result);
+    });
   });
 });
